@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Adithya Visnu Prasetyo Putra";
+});
+
+Route::get('/laravel', function () {
+    return view('laravel');
 });
