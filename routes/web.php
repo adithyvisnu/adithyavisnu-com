@@ -15,9 +15,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return "Adithya Visnu Prasetyo Putra";
+    return view('home', 'IndexController@index');
 });
 
 Route::get('/laravel', function () {
     return view('laravel');
 });
+
+Route::resource('stocks', StocksController::class);
