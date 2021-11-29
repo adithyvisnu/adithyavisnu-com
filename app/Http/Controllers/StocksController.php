@@ -65,9 +65,13 @@ class StocksController extends Controller
      * @param  \App\Models\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stocks $stocks)
+    public function edit(Stocks $stocks, $id)
     {
         //
+        $data = [
+            'stocks' => $stocks::where('id', $id)->first()
+        ];
+        return view('stocks_update', $data);
     }
 
     /**
@@ -80,6 +84,9 @@ class StocksController extends Controller
     public function update(Request $request, Stocks $stocks)
     {
         //
+        // print_r($request);
+        // $stocks->
+        // return redirect('/stocks');
     }
 
     /**

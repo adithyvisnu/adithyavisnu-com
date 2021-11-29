@@ -5,7 +5,7 @@
     <br>
     <ol>
         @foreach ($stocks as $stock)
-            <li>{{ $stock->stockId }} - {{ $stock->buyPrice }} - {{ $stock->buyDate }}</li>
+            <li>{{ $stock->stockId }} - {{ $stock->buyPrice }} - {{ $stock->buyDate }} <=> <a href='/stocks/{{ $stock->id }}/edit'>Ubah data</a> </li>
         @endforeach
     </ol>
     <br>
