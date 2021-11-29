@@ -9,4 +9,3 @@
         <input type="date" name="buyDate" value="{{ $stocks->buyDate }}" id="">
         <input type="submit" value="Simpan">
     </form>
-    {{ $company->address }}

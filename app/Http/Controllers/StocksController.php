@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stocks;
-use App\Models\Company;
 use Illuminate\Http\Request;
 
 class StocksController extends Controller
@@ -68,13 +67,8 @@ class StocksController extends Controller
      */
     public function edit(Stocks $stocks, $id)
     {
-        $dataStock = $stocks::where('id', $id)->first();
-        $dataCompany = $stocks::with('company')->where('stocks.id', $id)->first()->company;
-        $data = [
-            'stocks' => $dataStock,
-            'company' => $dataCompany
-        ];
-        return view('stocks_update', $data);
+        $data = $stocks::with('company')->where('stocks.id', $id)->first();
+        return view('stocks_update')->with('stocks', $data);
     }
 
     /**
