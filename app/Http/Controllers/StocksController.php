@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Stocks;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class StocksController extends Controller
@@ -16,7 +17,7 @@ class StocksController extends Controller
     {
         $data = [
             'title' => 'List Saham',
-            'stocks' => Stocks::find(1)->get()
+            'stocks' => Stocks::all()
         ];
         return view('stocks', $data);
     }
@@ -67,9 +68,11 @@ class StocksController extends Controller
      */
     public function edit(Stocks $stocks, $id)
     {
-        //
+        $dataStock = $stocks::where('id', $id)->first();
+        $dataCompany = $stocks::with('company')->where('stocks.id', $id)->first()->company;
         $data = [
-            'stocks' => $stocks::where('id', $id)->first()
+            'stocks' => $dataStock,
+            'company' => $dataCompany
         ];
         return view('stocks_update', $data);
     }
@@ -85,12 +88,10 @@ class StocksController extends Controller
     {
         //
         $stocks = $stocks::where('id', $id)->first();
-        // if($stocks) {
         $stocks->buyPrice = $request->input('buyPrice');
         $stocks->buyDate = $request->input('buyDate');
         $stocks->save();
         return redirect()->route('stocks.index');
-        // }
     }
 
     /**

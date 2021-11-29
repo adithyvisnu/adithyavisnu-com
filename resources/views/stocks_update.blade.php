@@ -1,7 +1,6 @@
 @extends('template')
 
 @section('content')
-    {{ $stocks }}
     <form action="{{ route('stocks.update', $stocks->id) }}" method="post">
         @csrf
         @method('PUT')
@@ -10,3 +9,4 @@
         <input type="date" name="buyDate" value="{{ $stocks->buyDate }}" id="">
         <input type="submit" value="Simpan">
     </form>
+    {{ $company->address }}

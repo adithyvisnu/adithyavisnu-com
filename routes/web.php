@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('home', 'IndexController@index');
+    return view('home');
 });
 
 Route::get('/laravel', function () {
