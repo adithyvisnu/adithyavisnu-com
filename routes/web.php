@@ -18,10 +18,6 @@ Route::get('/', function () {
     return "Adithya Visnu Prasetyo Putra";
 });
 
-Route::get('/home', "HomeController@index")->name('index');
-
-Route::post('/matkul', "HomeController@postMatkul");
-
 Route::get('/laravel', function () {
     return view('laravel');
 });
