@@ -2,6 +2,9 @@
 
 @section('content')
     {{ $title }}
+    @auth
+        , {{ auth()->user() }}
+    @endauth
     <br>
     <ol>
         @foreach ($stocks as $stock)

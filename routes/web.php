@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +17,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/laravel', function () {
-    return view('laravel');
-});
+Route::get('/auth', function () { return view('login_register'); })->name('auth');
+Route::post('/register', 'LoginRegisterController@register')->name('register');
+Route::post('/login', 'LoginRegisterController@login')->name('login');
+Route::post('/logout', 'LoginRegisterController@logout')->name('logout');
 
 Route::resource('stocks', StocksController::class);
 
 Route::resource('companies', CompanyController::class);
+
+Route::get('/laravel', function () { return view('laravel'); });
