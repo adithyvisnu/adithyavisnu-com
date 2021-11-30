@@ -16,6 +16,8 @@ class CompanyController extends Controller
     public function index()
     {
         //
+        $data = new Company;
+        print_r($data::all());
     }
 
     /**
@@ -48,6 +50,13 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         //
+        $companies = $company::with('stocks')->where('id', $company->id)->first();
+        // print_r($companies);
+        $data = [
+            'title' => 'Detail Company',
+            'company' => $companies
+        ];
+        return view('company', $data);
     }
 
     /**
@@ -58,7 +67,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        // 
     }
 
     /**

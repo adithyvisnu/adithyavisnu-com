@@ -5,8 +5,10 @@
     <br>
     <ol>
         @foreach ($stocks as $stock)
+            {{ $stock->company->id }}
             <li>
-                {{ $stock->stockId }} - {{ $stock->buyPrice }} - {{ $stock->buyDate }}
+                <a href={{ route('companies.show', $stock->company->id) }}>{{ $stock->stockId }}</a>
+                - {{ $stock->buyPrice }} - {{ $stock->buyDate }}
                 <=> <a href={{ route('stocks.edit', $stock->id) }}>Ubah data</a>, 
                 <=> 
                 <form action={{ route('stocks.destroy', $stock->id) }} method="post">

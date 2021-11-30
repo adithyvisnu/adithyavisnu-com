@@ -16,7 +16,7 @@ class StocksController extends Controller
     {
         $data = [
             'title' => 'List Saham',
-            'stocks' => Stocks::all()
+            'stocks' => Stocks::with('company')->get()
         ];
         return view('stocks', $data);
     }
@@ -67,8 +67,13 @@ class StocksController extends Controller
      */
     public function edit(Stocks $stocks, $id)
     {
-        $data = $stocks::with('company')->where('stocks.id', $id)->first();
-        return view('stocks_update')->with('stocks', $data);
+        // 
+        $dataStock = $stocks::with('company')->where('id', $id)->first();
+        $data = [
+            'stocks' => $dataStock,
+            'company' => $dataStock->company
+        ];
+        return view('stocks_update', $data);
     }
 
     /**

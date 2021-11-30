@@ -23,3 +23,5 @@ Route::get('/laravel', function () {
 });
 
 Route::resource('stocks', StocksController::class);
+
+Route::resource('companies', CompanyController::class);

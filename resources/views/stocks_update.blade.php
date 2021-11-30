@@ -1,6 +1,8 @@
 @extends('template')
 
 @section('content')
+    {{ $stocks }}
+    {{ $company }}
     <form action="{{ route('stocks.update', $stocks->id) }}" method="post">
         @csrf
         @method('PUT')
