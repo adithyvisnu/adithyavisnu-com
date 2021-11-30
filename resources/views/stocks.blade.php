@@ -5,7 +5,16 @@
     <br>
     <ol>
         @foreach ($stocks as $stock)
-            <li>{{ $stock->stockId }} - {{ $stock->buyPrice }} - {{ $stock->buyDate }} <=> <a href='/stocks/{{ $stock->id }}/edit'>Ubah data</a> </li>
+            <li>
+                {{ $stock->stockId }} - {{ $stock->buyPrice }} - {{ $stock->buyDate }}
+                <=> <a href={{ route('stocks.edit', $stock->id) }}>Ubah data</a>, 
+                <=> 
+                <form action={{ route('stocks.destroy', $stock->id) }} method="post">
+                    @csrf
+                    @method('DELETE')
+                   <input type='submit' value='Hapus data'>
+                </form>
+            </li>
         @endforeach
     </ol>
     <br>

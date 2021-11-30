@@ -2,8 +2,8 @@
 
 @section('content')
     {{ $stocks }}
-    <form action="/stocks/{{ $stocks->id }}" method="post">
-        {{ csrf_field() }}
+    <form action="{{ route('stocks.update', $stocks->id) }}" method="post">
+        @csrf
         @method('PUT')
         <input type="text" name="stockId" value="{{ $stocks->stockId }}" disabled>
         <input type="number" name="buyPrice" value="{{ $stocks->buyPrice }}" id="">

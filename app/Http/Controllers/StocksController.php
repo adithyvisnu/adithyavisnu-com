@@ -81,12 +81,16 @@ class StocksController extends Controller
      * @param  \App\Models\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stocks $stocks)
+    public function update(Request $request, Stocks $stocks, $id)
     {
         //
-        // print_r($request);
-        // $stocks->
-        // return redirect('/stocks');
+        $stocks = $stocks::where('id', $id)->first();
+        // if($stocks) {
+        $stocks->buyPrice = $request->input('buyPrice');
+        $stocks->buyDate = $request->input('buyDate');
+        $stocks->save();
+        return redirect()->route('stocks.index');
+        // }
     }
 
     /**
@@ -95,8 +99,10 @@ class StocksController extends Controller
      * @param  \App\Models\Stocks  $stocks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stocks $stocks)
+    public function destroy(Stocks $stocks, $id)
     {
         //
+        $stocks::where('id', $id)->delete();
+        return redirect()->route('stocks.index');
     }
 }

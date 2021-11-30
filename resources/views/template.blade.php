@@ -7,6 +7,7 @@
     <title>Adithya Visnu Prasetyo Putra</title>
 </head>
 <body>
+    <br>Dibawah ini konten dari template, sisanya harusnya ganti2an
     @yield('content')
 </body>
 </html>
