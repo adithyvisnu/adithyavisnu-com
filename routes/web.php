@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () { return view('home'); })->name('home');
+    Route::get('/auth', function () { return view('login_register'); })->name('auth');
+    Route::post('/register', 'LoginRegisterController@register')->name('register');
+    Route::post('/login', 'LoginRegisterController@login')->name('login');
 });
 
-Route::get('/auth', function () { return view('login_register'); })->name('auth');
-Route::post('/register', 'LoginRegisterController@register')->name('register');
-Route::post('/login', 'LoginRegisterController@login')->name('login');
-Route::post('/logout', 'LoginRegisterController@logout')->name('logout');
-
-Route::resource('stocks', StocksController::class);
-
-Route::resource('companies', CompanyController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', 'LoginRegisterController@logout')->name('logout');
+    Route::resource('stocks', StocksController::class);
+    Route::resource('companies', CompanyController::class);
+});
 
 Route::get('/laravel', function () { return view('laravel'); });

@@ -14,6 +14,8 @@ class StocksController extends Controller
      */
     public function index()
     {
+        // $print = Stocks::with('company')->get();
+        // return response()->json($print);
         $data = [
             'title' => 'List Saham',
             'stocks' => Stocks::with('company')->get()
