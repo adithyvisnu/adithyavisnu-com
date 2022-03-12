@@ -42,10 +42,7 @@ class StocksController extends Controller
     public function store(Request $request)
     {
         //
-        $stocks = new Stocks;
-        $stocks->stockId = $request->input('stockId');
-        $stocks->buyPrice = $request->input('buyPrice');
-        $stocks->buyDate = $request->input('buyDate');
+        $stocks = new Stocks($request->except(['_token']));
         $stocks->save();
         return redirect('/stocks');
     }

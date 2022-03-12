@@ -14,6 +14,8 @@ class Stocks extends Model
     protected $table = 'stocks';
     public $primaryKey = 'id';
     public $timestamps = true;
+
+    protected $fillable = ['method', 'stockId', 'price', 'qty', 'transactionDate'];
     
     /**
      * Get the Company that owns the Stocks

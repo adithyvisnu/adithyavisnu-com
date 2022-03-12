@@ -15,9 +15,11 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->string('stockId');
-            $table->integer('buyPrice')->unsigned();
-            $table->date('buyDate');
+            $table->enum('method', ["buy", "sell"]);
+            $table->string('stockId', 100);
+            $table->integer('price')->unsigned();
+            $table->integer('qty')->unsigned();
+            $table->date('transactionDate');
             $table->softDeletes();
             $table->timestamps();
         });
